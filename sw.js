@@ -14,3 +14,19 @@ self.addEventListener('install', function (event){
               ]);
           }));
         });
+
+   // Activate Service worker and delete old cache (if any) add new cache
+   self.addEventListener('activate', function(event) {
+    event.waitUntil(
+      caches.keys().then(function(cacheNames) {
+        return Promise.all(
+          cacheNames.filter(function(cacheName) {
+            return cacheName.startsWith('mws-static-') &&
+                   cacheName != staticCacheName;
+          }).map(function(cacheName) {
+            return caches.delete(cacheName);
+          })
+        );
+      })
+    );
+  });
