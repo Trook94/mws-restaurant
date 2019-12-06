@@ -1,7 +1,7 @@
 let restaurants,
   neighborhoods,
   cuisines
-var newMap
+var newMap, map
 var markers = []
 
 /**
@@ -207,5 +207,5 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     });
     self.markers.push(marker);
   });
-} */
+} /*/
 
